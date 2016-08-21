@@ -26,6 +26,7 @@
       shell {{conda_dir}}/bin/python setup.py configure \
               --svn-inc-dir={{ conda_dir }}/include/subversion-1 \
               --svn-lib-dir={{ conda_dir }}/lib \
+              --apr-lib-dir={{ conda_dir }}/lib \
               --apr-inc-dir={{ conda_dir }}/include/apr-1/  \
               --apu-inc-dir={{ conda_dir }}/include/apr-1/
       chdir="/tmp/{{ pysvn_name }}-{{ pysvn_version }}/Source"

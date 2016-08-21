@@ -41,12 +41,6 @@
 #     state=absent
 #   ignore_errors: yes
 
-# - name: Installing extra conda packages
-#   action: >
-#       shell {{conda_dir}}/bin/conda install --yes {{ item }}
-#   with_items: "{{ conda_packages }}"
-#   environment: "{{ proxy_env }}"
-
 - name: Installing extra conda packages
   action: >
       shell {{conda_dir}}/bin/conda install --yes {{ conda_packages | join(" ") }}
