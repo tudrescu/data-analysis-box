@@ -1,0 +1,21 @@
+---
+
+#########################
+# Common deps           #
+#########################
+- hosts: all
+  become: true
+  become_method: 'sudo'
+  tags: common
+  roles:
+    - ansible-common-dependencies
+
+#########################
+# Conda                 #
+#########################
+- hosts: all
+  become: true
+  become_method: 'sudo'
+  tags: conda
+  roles:
+    - ansible-conda

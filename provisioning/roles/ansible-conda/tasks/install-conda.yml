@@ -1,0 +1,59 @@
+---
+
+# Download Official Plugins if behind proxy. kibana plugin command does not support proxies
+- name: Download conda
+  get_url: >
+    url="{{ miniconda_download_url }}"
+    dest="/tmp/{{ conda_name }}-{{ conda_version }}-Linux-x86_64.sh"
+    validate_certs="{{ validate_apt_certificates }}"
+  environment: "{{ proxy_env }}"
+
+- file: >
+    path="/tmp/{{ conda_name }}-{{ conda_version }}-Linux-x86_64.sh"
+    owner=vagrant
+    group=vagrant
+    mode=0755
+
+# Add directories
+- file: >
+    path="{{ conda_dir }}"
+    state=directory
+    owner=vagrant
+    group=vagrant
+    recurse=yes
+
+- template: >
+    src="conda.sh"
+    dest="/etc/profile.d/conda.sh"
+    owner=root
+    group=root
+    mode=0755
+
+- name: install conda
+  action: >
+    shell /bin/bash "/tmp/{{ conda_name }}-{{ conda_version }}-Linux-x86_64.sh" -f -b -p "{{ conda_dir }}"
+  become: yes
+  become_user: vagrant
+
+# - name: Cleanup downloaded distribution
+#   file: >
+#     name="/tmp/{{ conda_name }}-{{ conda_version }}-Linux-x86_64.sh"
+#     state=absent
+#   ignore_errors: yes
+
+# - name: Installing extra conda packages
+#   action: >
+#       shell {{conda_dir}}/bin/conda install --yes {{ item }}
+#   with_items: "{{ conda_packages }}"
+#   environment: "{{ proxy_env }}"
+
+- name: Installing extra conda packages
+  action: >
+      shell {{conda_dir}}/bin/conda install --yes {{ conda_packages | join(" ") }}
+  become: yes
+  become_user: vagrant
+  environment: "{{ proxy_env }}"
+
+# - name: Cleanup tarballs
+#   action: >
+#       shell {{conda_dir}}/bin/conda clean -yt

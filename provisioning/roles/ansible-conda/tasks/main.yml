@@ -1,0 +1,10 @@
+---
+# anaconda installation
+
+- include: extra-dependencies.yml
+
+- include: install-conda.yml
+
+- include: install-pip-dependencies.yml
+
+- include: install-pysvn.yml
