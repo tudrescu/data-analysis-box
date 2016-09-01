@@ -53,6 +53,7 @@ conda_packages:
   - spacy
   - pymc
   - pivottablejs
+  - mysql-connector-python
 
 pip_packages:
   - arrow
