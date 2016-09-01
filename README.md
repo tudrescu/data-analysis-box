@@ -1,7 +1,7 @@
 Data Analysis Box
 =================
 
-- Jupyter Environment based on Anaconda3
+- Jupyter Notebook Environment based on Anaconda3
 
 ### Requirements
 

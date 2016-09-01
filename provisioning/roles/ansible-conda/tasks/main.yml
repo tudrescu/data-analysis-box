@@ -1,7 +1,9 @@
 ---
-# anaconda installation
+# Anaconda installation
 
 - include: extra-dependencies.yml
+
+- include: install-latex.yml
 
 - include: install-conda.yml
 

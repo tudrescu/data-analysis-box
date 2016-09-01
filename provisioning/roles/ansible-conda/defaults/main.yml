@@ -1,19 +1,21 @@
 ---
 # Anaconda installation
 
-apt_cache_valid_time: 10                # seconds between "apt-get update" calls.
-validate_apt_certificates: "no"         # no certificate validation because for APT get key tasks
+apt_cache_valid_time: 100                # seconds between "apt-get update" calls.
+validate_apt_certificates: "no"          # no certificate validation because for APT get key tasks
 
 extra_apt_dependencies:
   - build-essential
   - python-dev
   - libsm6
   - pandoc
-  - texlive-latex-base
   - subversion
-  # - texlive-latex-extra
-  # - texlive-fonts-extra
-  # - texlive-fonts-recommended
+
+latex_apt_dependencies:
+  - texlive-latex-base
+  - texlive-latex-extra
+  - texlive-fonts-recommended
+  - texlive-fonts-extra
 
 conda_dir: "/opt/conda"
 
@@ -29,11 +31,36 @@ conda_name: "Anaconda3"
 conda_version: "4.1.1"
 
 miniconda_download_url: "{{ continuum_repos }}/{{ miniconda_dir }}/{{ conda_name }}-{{ conda_version }}-Linux-x86_64.sh"
-anaconda_download_url: "{{ continuum_repos }}/{{ anaconda_dir }}/{{ anaconda_name }}-{{ anaconda_version }}-Linux-x86_64.sh"
+# anaconda_download_url: "{{ continuum_repos }}/{{ anaconda_dir }}/{{ anaconda_name }}-{{ anaconda_version }}-Linux-x86_64.sh"
 
 tigris_pysvn_url: "http://pysvn.barrys-emacs.org/source_kits"
 pysvn_name: "pysvn"
 pysvn_version: "1.9.2"
+
+conda_packages:
+  - bokeh
+  - seaborn
+  - gunicorn
+  - gensim
+  - decorator
+  - luigi
+  - csvkit
+  - apr
+  - statsmodels
+  - svn
+  - git
+  - virtualenv
+  - spacy
+  - pymc
+  - pivottablejs
+
+pip_packages:
+  - arrow
+  - elasticsearch
+  - ipython-sql
+#  - ansible
+
+
 
 # conda_packages:
 #   - notebook
@@ -70,25 +97,3 @@ pysvn_version: "1.9.2"
 #   - pivottablejs
 #   - pip
 #   - lxml
-
-conda_packages:
-  - bokeh
-  - seaborn
-  - gunicorn
-  - gensim
-  - decorator
-  - luigi
-  - csvkit
-  - apr
-  - statsmodels
-  - svn
-  - git
-  - virtualenv
-  - spacy
-  - pymc
-  - pivottablejs
-
-pip_packages:
-  - arrow
-  - elasticsearch
-#  - ansible

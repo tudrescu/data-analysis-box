@@ -29,7 +29,7 @@
     group=root
     mode=0755
 
-- name: install conda
+- name: Install Anaconda
   action: >
     shell /bin/bash "/tmp/{{ conda_name }}-{{ conda_version }}-Linux-x86_64.sh" -f -b -p "{{ conda_dir }}"
   become: yes
@@ -48,6 +48,6 @@
   become_user: vagrant
   environment: "{{ proxy_env }}"
 
-# - name: Cleanup tarballs
-#   action: >
-#       shell {{conda_dir}}/bin/conda clean -yt
+- name: Cleanup tarballs
+  action: >
+      shell {{conda_dir}}/bin/conda clean -yt
