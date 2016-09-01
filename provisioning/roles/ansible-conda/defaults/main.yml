@@ -59,6 +59,7 @@ pip_packages:
   - arrow
   - elasticsearch
   - ipython-sql
+  - folium
 #  - ansible
 
 
