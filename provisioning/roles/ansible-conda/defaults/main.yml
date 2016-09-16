@@ -60,8 +60,9 @@ pip_packages:
   - elasticsearch
   - ipython-sql
   - folium
+  - qgrid
 #  - ansible
-
+# do not forget to update statemodels!
 
 
 # conda_packages:
