@@ -1,0 +1,70 @@
+---
+# Kibana Ansible defaults
+
+kibana_group: kibana
+kibana_user: kibana
+
+# DEPRECATED Parameters
+# kibana_force_install: "true"
+
+# kibana_version: "4.5.0"                         # version to install
+# kibana_os: "linux"                              # Kibana operating system build
+# kibana_arch: "x64"                              # Kibana architecture build
+# https://download.elastic.co/kibana/kibana/kibana-4.5.0-linux-x64.tar.gz
+
+# kibana_download_url: "https://download.elastic.co/kibana/kibana"
+
+kibana_dir: "/opt/kibana"                       # Kibana home dir
+
+kibana_host: "0.0.0.0"                          # Kibana address to bind to
+kibana_port: "5601"                             # Kibana port
+
+kibana_elasticsearch: "http://localhost:9200"   # ElasticSearch endpoint
+kibana_index: ".kibana"                         # Kibana index in ElasticSearch
+
+kibana_default_app_id: "discover"               # Default App to Load
+
+# Logging Parameters
+kibana_log_dir: /var/log/kibana
+kibana_log: "{{ kibana_log_dir }}/kibana.log"   # Kibana log path
+
+# # TODO implement logrotate?
+# kibana_log_rotate_count: 5                      # Log rotation count
+# kibana_log_rotate_interval: daily               # Log rotation interval
+
+# Repositories
+kibana_branch: "4.6"
+kibana_apt_repo: "deb http://packages.elastic.co/kibana/{{ kibana_branch }}/debian stable main"
+kibana_repo_key: "https://packages.elastic.co/GPG-KEY-elasticsearch"
+kibana_apt_source_list: "/etc/apt/sources.list.d/kibana-{{ kibana_branch }}.list"
+
+plugins_download_url: "https://download.elastic.co"
+
+# official plugins, hosted by elastic
+kibana_plugins:
+  - { short: 'sense', name: 'elastic/sense', path: 'elastic/sense', version: 'latest' }
+  - { short: 'timelion', name: 'kibana/timelion', path: 'kibana/timelion', version: 'latest' }
+  - { short: 'marvel', name: 'elasticsearch/marvel/latest', path: 'elasticsearch/marvel', version: 'latest' }
+  - { short: 'graph', name: 'elasticsearch/graph/latest', path: 'elasticsearch/graph', version: 'latest' }
+
+# community plugins
+kibana_community_plugins:
+  - { short: 'heatmap', url: "https://github.com/stormpython/heatmap/archive/master.zip" }
+  - { short: 'kibana-time-plugin', url: "https://github.com/nreese/kibana-time-plugin/archive/master.zip" }
+#  - { short: 'vectormap', url: "https://github.com/stormpython/vectormap/archive/master.zip" }
+#  - { short: 'kibana-html-plugin', url: "https://github.com/raystorm-place/kibana-html-plugin/archive/master.zip" }
+#  - { short: 'kibi_radar_vis', url: "https://github.com/sirensolutions/kibi_radar_vis/archive/0.1.0.zip" }
+#  - { short: 'kibi_timeline_vis', url: "https://github.com/sirensolutions/kibi_timeline_vis/raw/0.1.2/target/kibi_timeline_vis-0.1.2.zip" }
+
+# Service Parameters
+kibana_service_startonboot: yes
+kibana_service_state: started
+
+# Security
+kibana_verify_ssl: "true"
+# kibana_ca - Certificate
+# kibana_ssl_key_file - Key file
+# kibana_ssl_cert_file - Cert file
+
+# kibana_elasticsearch_username - basic auth username for maintaining the kibana_index
+# kibana_elasticsearch_password - basic auth password for maintaining the

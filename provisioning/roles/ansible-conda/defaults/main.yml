@@ -10,6 +10,7 @@ extra_apt_dependencies:
   - libsm6
   - pandoc
   - subversion
+  - xvfb
 
 latex_apt_dependencies:
   - texlive-latex-base
@@ -46,7 +47,6 @@ conda_packages:
   - luigi
   - csvkit
   - apr
-  - statsmodels
   - svn
   - git
   - virtualenv
@@ -54,16 +54,22 @@ conda_packages:
   - pymc
   - pivottablejs
   - mysql-connector-python
+  # - statsmodels
 
 pip_packages:
   - arrow
   - elasticsearch
   - ipython-sql
   - folium
-  - qgrid
+  - statsmodels==0.8.0rc1
 #  - ansible
-# do not forget to update statemodels!
+# do not forget to update statsmodels!
 
+extra_nb_extensions:
+  - https://github.com/Anaconda-Server/nbbrowserpdf/archive/master.zip
+
+activate_nbextensions:
+  - 'nbbrowserpdf.install'
 
 # conda_packages:
 #   - notebook

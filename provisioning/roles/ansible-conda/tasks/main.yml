@@ -9,4 +9,6 @@
 
 - include: install-pip-dependencies.yml
 
+- include: install-extra-nbextensions.yml
+
 - include: install-pysvn.yml

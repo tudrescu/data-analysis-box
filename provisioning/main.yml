@@ -10,6 +10,7 @@
   roles:
     - ansible-common-dependencies
 
+
 #########################
 # Conda                 #
 #########################
@@ -19,3 +20,47 @@
   tags: conda
   roles:
     - ansible-conda
+
+
+#########################
+# Java                  #
+#########################
+- hosts: all
+  become: true
+  become_method: 'sudo'
+  tags: java
+  roles:
+    - ansible-java
+
+
+##########################
+# Elasticsearch install  #
+##########################
+- hosts: all
+  become: true
+  become_method: 'sudo'
+  tags: elasticsearch
+  roles:
+    - ansible-elasticsearch
+
+
+##########################
+# Kibana install         #
+##########################
+- hosts: all
+  become: true
+  become_method: 'sudo'
+  tags: kibana
+  roles:
+    - ansible-kibana
+
+
+##########################
+# Apache2 install        #
+##########################
+- hosts: all
+  become: true
+  become_method: 'sudo'
+  tags: apache2
+  roles:
+    - ansible-apache2

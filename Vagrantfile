@@ -43,6 +43,9 @@ extra_vars_hash = {:java_useproxy => use_proxy}
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 Vagrant.configure(2) do |config|
 
+  # disable random keypair generation
+  config.ssh.insert_key = false
+
   # set to false, if you do NOT want to check the correct VirtualBox Guest Additions version when booting this box
   if defined?(VagrantVbguest::Middleware)
     config.vbguest.auto_update = (prefs.has_key?('vbguest_auto_update') ? prefs['vbguest_auto_update'] : true)
@@ -73,8 +76,12 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = vm_base_box
 
-  config.vm.network :forwarded_port, guest: 8888, host: 8888        # ports
-  
+  config.vm.network :forwarded_port, guest: 8888, host: 8888         # ports
+  config.vm.network :forwarded_port, guest: 5601, host: 25601        # Kibana port
+  config.vm.network :forwarded_port, guest: 9200, host: 29200        # Elasticsearch http
+  config.vm.network :forwarded_port, guest: 9300, host: 29300        # Elasticsearch tcp
+  config.vm.network :forwarded_port, guest: 8082, host: 38082        # Apache
+
 
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
 

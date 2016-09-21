@@ -18,3 +18,7 @@ use_proxy: false
 ansible_tags:
     - common                                 # common dependencies
     - conda
+    - java
+    - elasticsearch
+    - kibana
+    - apache2
